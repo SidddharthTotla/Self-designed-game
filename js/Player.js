@@ -1,9 +1,9 @@
 class Player {
     constructor(){
         this.index = null;
-        this.x = 0;
+        this.velocityX = 0;
         this.name = null;
-        this.y = 0;
+        this.velocityY = 0;
 
     }
 
@@ -24,8 +24,8 @@ class Player {
         var playerIndex = "players/player" + this.index;
         database.ref(playerIndex).set({
             name:this.name,
-            x : this.x,
-            y : this.y 
+            velocityX : this.velocityX,
+            velocityY : this.velocityY 
         });
     }
     static getPlayerInfo(){

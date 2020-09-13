@@ -37,6 +37,9 @@ class Game {
 
       background(151,81,12);
 
+      player1.debug = true;
+      player2.debug = true;
+
       var maze1 = createSprite(displayWidth/2,displayHeight/2 + 70,5,800);
       var maze2 = createSprite(displayWidth - displayWidth ,displayHeight/2,50,800);
       var maze3 = createSprite(displayWidth - 20,displayHeight/2,50,800);
@@ -116,8 +119,15 @@ class Game {
       mazeGroup.add(maze34);
       mazeGroup.add(maze35);
 
-      player1.collide(mazeGroup);
-      player2.collide(mazeGroup);
+      mazeGroup.setColorEach("green");
+      if(mazeGroup.isTouching(player1)){
+        mazeGroup.collide(player1);
+      }
+      if(mazeGroup.isTouching(player2)){
+        mazeGroup.collide(player2);
+      }
+      
+      
 
       Player.getPlayerInfo();
       //console.log(allPlayers)
@@ -413,16 +423,16 @@ class Game {
       console.log("move");
       console.log(player.index);
     if(keyIsDown(UP_ARROW)){
-      player.y = player.y - 25;
+      player.velocityY = -5;
     }
     if(keyIsDown(DOWN_ARROW)){
-      player.y = player.y + 25;
+      player.velocityY = 5;
     }
     if(keyIsDown(LEFT_ARROW)){
-      player.x = player.x - 25;
+      player.velocityX = -5;
     }
     if(keyIsDown(RIGHT_ARROW)){
-      player.x = player.x + 25;
+      player.velocityX = 5;
     }
     /*if(keyIsDown(LEFT_ARROW)){
       player.rotation(90);
